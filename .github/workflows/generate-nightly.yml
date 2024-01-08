@@ -22,7 +22,7 @@ jobs:
           ./generate-nightly.sh ${{ secrets.GITHUB_TOKEN }}
       - name: Get Build Date
         id: date
-        run: echo "tag_name=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+        run: echo "tag_name=$(cat release_version.txt)" >> $GITHUB_ENV
       - name: Delete Old Release
         uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
@@ -35,7 +35,7 @@ jobs:
         continue-on-error: true
         id: attempt-1
         with:
-          name: 2.0.0-indev+${{ env.tag_name }}
+          name: ${{ env.tag_name }}
           tag_name: nightly
           body_path: changes.txt
           token: ${{ secrets.GITHUB_TOKEN }}
