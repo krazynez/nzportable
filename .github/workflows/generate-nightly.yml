@@ -35,7 +35,7 @@ jobs:
         continue-on-error: true
         id: attempt-1
         with:
-          name: ${{ env.tag_name }}
+          name: 2.0.0-indev+${{ env.tag_name }}
           tag_name: nightly
           body_path: changes.txt
           token: ${{ secrets.GITHUB_TOKEN }}
